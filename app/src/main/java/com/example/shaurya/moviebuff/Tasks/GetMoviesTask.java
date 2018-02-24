@@ -39,7 +39,7 @@ public class GetMoviesTask extends AsyncTask<String , Void, String > {
     public String doInBackground(String... strings) {
         String result = null;
         try {
-            URL url = new URL("http://api.themoviedb.org/3/movie/popular?api_key=ab5aee0b18da89dd9e026d35754c24f1&page="+page);
+            URL url = new URL(strings[0]+page);
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
             InputStream in = new BufferedInputStream(urlConnection.getInputStream());
             result = inputStreamToString(in);
