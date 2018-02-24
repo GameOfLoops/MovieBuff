@@ -47,7 +47,7 @@ public class PopularMovieFragment extends Fragment {
         mList = new ArrayList<>();
         recyclerView = (RecyclerView)view.findViewById(R.id.rv_Movie);
         Bundle arguments = getArguments();
-        if (arguments != null && arguments.containsKey("FragmentForFavourites")){
+        if (arguments != null && arguments.getInt("FragmentForFavourites")==3){
             mList = MovieDBHelper.getInstance(getActivity()).getSavedMovies();
             if (mList.size()>0){
                 rvAdapter = new RecyclerViewAdapter(mList, getActivity(), mListener);
@@ -101,7 +101,11 @@ public class PopularMovieFragment extends Fragment {
                 rvAdapter.notifyDataSetChanged();
             }
         });
-        getMoviesTask.execute();
+        Bundle arguments = getArguments();
+        if (arguments != null && arguments.getInt("FragmentForFavourites")==1)
+            getMoviesTask.execute("http://api.themoviedb.org/3/movie/popular?api_key=ab5aee0b18da89dd9e026d35754c24f1&page=");
+        else if (arguments != null && arguments.getInt("FragmentForFavourites")==2)
+            getMoviesTask.execute("http://api.themoviedb.org/3/movie/top_rated?api_key=ab5aee0b18da89dd9e026d35754c24f1&page=");
     }
 
     public static PopularMovieFragment newInstance(){

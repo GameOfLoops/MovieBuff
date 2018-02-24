@@ -25,12 +25,11 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                    return PopularMovieFragment.newInstance();
+                    return PopularMovieFragment.newInstance(1);
             case 1:
-                    return PopularMovieFragment.newInstance();
+                    return PopularMovieFragment.newInstance(2);
             case 2:
-                    int favouritesList = 1;
-                    return PopularMovieFragment.newInstance(favouritesList);
+                    return PopularMovieFragment.newInstance(3);
             default:
                 return null;
         }
